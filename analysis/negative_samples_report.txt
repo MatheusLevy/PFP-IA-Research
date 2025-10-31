@@ -1,0 +1,43 @@
+NEGATIVE SAMPLES REPORT
+==================================================
+
+STATISTICS BY SPLIT:
+------------------------------
+
+TRAIN:
+  Total images: 784
+  Images without objects: 224
+  Percentage: 28.57%
+
+VALID:
+  Total images: 224
+  Images without objects: 61
+  Percentage: 27.23%
+
+TEST:
+  Total images: 121
+  Images without objects: 27
+  Percentage: 22.31%
+STATISTICS BY SPLIT:
+------------------------------
+
+TRAIN:
+  Total images: 784
+  Images without objects: 224
+  Percentage: 28.57%
+
+VALID:
+  Total images: 224
+  Images without objects: 61
+  Percentage: 27.23%
+
+TEST:
+  Total images: 121
+  Images without objects: 27
+  Percentage: 22.31%
+
+GENERAL STATISTICS:
+------------------------------
+Total images in dataset: 1129
+Total images without objects: 312
+Overall percentage: 27.64%
