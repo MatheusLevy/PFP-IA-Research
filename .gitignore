@@ -1,3 +1,8 @@
-/data
-/runs
-/labeled
+data/
+runs/
+labeled/
+dataset_debug/
+dataset/train/
+dataset/test_freeze/
+dataset/test_accumulative/
+dataset/test_drift/
