@@ -1,0 +1,48 @@
+services:
+  mc:
+      image: minio/mc@sha256:68d8c80f43908b02daa285e55547131870a1d36b3ffe272c26d7d8f4d52d1e5c
+      container_name: mc
+      env_file:
+          - .env
+      entrypoint: >
+          /bin/sh -c "
+          /usr/bin/mc alias set ninjas3 http://host.docker.internal:9444 ${AWS_ACCESS_KEY_ID} ${AWS_SECRET_ACCESS_KEY} &&
+          /usr/bin/mc mb ninjas3/mlflow;
+          exit 0;
+          "
+  db:
+      restart: always
+      image: postgres:15-alpine
+      container_name: mlflow_db
+      ports:
+          - "5432:5432"
+      environment:
+          - POSTGRES_DB=${POSTGRES_DATABASE}
+          - POSTGRES_USER=${POSTGRES_USER}
+          - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      volumes:
+          - dbdata:/var/lib/postgresql/data
+      healthcheck:
+          test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DATABASE}"]
+          interval: 30s
+          timeout: 10s
+          retries: 3
+
+  web:
+      restart: always
+      build: ./mlflow
+      image: local/mlflow_server
+      container_name: mlflow_server
+      depends_on:
+          - mc
+          - db
+      ports:
+          - "5000:5000"
+      environment:
+          - MLFLOW_S3_ENDPOINT_URL=http://host.docker.internal:9444
+          - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+          - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      command: mlflow server --backend-store-uri postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DATABASE} --default-artifact-root s3://mlflow/ --host 0.0.0.0
+
+volumes:
+    dbdata:

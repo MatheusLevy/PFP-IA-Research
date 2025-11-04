@@ -10,3 +10,4 @@ dataset/test_drift/
 dataset/*.csv
 dataset/*.yaml
 *.pt
+*.env
