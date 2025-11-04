@@ -3,6 +3,10 @@ runs/
 labeled/
 dataset_debug/
 dataset/train/
+dataset/valid
 dataset/test_freeze/
 dataset/test_accumulative/
 dataset/test_drift/
+dataset/*.csv
+dataset/*.yaml
+*.pt
