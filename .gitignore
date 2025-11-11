@@ -11,3 +11,5 @@ dataset/*.csv
 dataset/*.yaml
 *.pt
 *.env
+*.db 
+wandb/
