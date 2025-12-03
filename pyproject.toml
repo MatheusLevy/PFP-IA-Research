@@ -1,0 +1,12 @@
+[project]
+name = "pfp-ia-research"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "dvc[s3]>=3.64.1",
+    "pandas>=2.3.3",
+    "pyyaml>=6.0.3",
+    "scikit-learn>=1.7.2",
+]
