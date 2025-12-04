@@ -3,4 +3,4 @@
 ['remote "data-labeling"']
     url = s3://data-labeling-s3
     profile = pfp
-    endpointurl = http://localhost:9444/
+    endpointurl = http://s3-ninja.s3-ninja.svc.cluster.local:9000
